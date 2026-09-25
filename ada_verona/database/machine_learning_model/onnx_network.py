@@ -41,7 +41,7 @@ class ONNXNetwork(Network):
         Args:
             path (Path): The path to the network file.
         """
-        self._path = path
+        self._path = Path(path)
         self.onnx_model = None
         self.torch_model_wrapper = None
 

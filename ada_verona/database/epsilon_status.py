@@ -31,7 +31,7 @@ class EpsilonStatus:
     result: VerificationResult | None
     time: float = None
     verifier: str = None
-    obtained_labels: list[int] = None
+    # obtained_labels: list[int] = None
 
     def set_values(self, complete_verification_data: CompleteVerificationData):
         """
@@ -42,7 +42,7 @@ class EpsilonStatus:
         """
         self.result = complete_verification_data.result
         self.time = complete_verification_data.took
-        self.obtained_labels = getattr(complete_verification_data, "obtained_labels", None)
+        # self.obtained_labels = complete_verification_data.obtained_labels
 
     def to_dict(self) -> dict:
         """Convert the EpsilonStatus to a dictionary."""
@@ -55,10 +55,9 @@ class EpsilonStatus:
             else:
                 obtained_labels_value = [self.obtained_labels]
 
-        return dict(
-            epsilon_value=self.value,
-            result=self.result,
-            time=self.time,
-            verifier=self.verifier,
-            obtained_labels=obtained_labels_value,
-        )
+        Returns:
+            dict: The dictionary representation of the EpsilonStatus.
+        """
+        return dict(epsilon_value=self.value, result=self.result, time=self.time, verifier=self.verifier)
+                    # obtained_labels=self.obtained_labels.flatten().tolist() if self.obtained_labels is not None 
+                    # else None)

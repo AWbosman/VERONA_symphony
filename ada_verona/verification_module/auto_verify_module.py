@@ -93,6 +93,7 @@ class AutoVerifyModule(VerificationModule):
                 vnnlib_property.path,
                 timeout=self.timeout,
             )
+            logger.debug(result)
 
         if isinstance(result, Ok):
             outcome = result.unwrap()

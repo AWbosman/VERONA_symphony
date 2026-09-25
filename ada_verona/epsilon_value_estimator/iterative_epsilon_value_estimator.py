@@ -79,6 +79,10 @@ class IterativeEpsilonValueEstimator(EpsilonValueEstimator):
             status.set_values(outcome)
             verification_context.save_result(status)
             logger.info(f"epsilon value: {status.value}, result: {status.result}")
+            if status.result not in [VerificationResult.UNSAT, VerificationResult.SAT]:
+                break
+                
+            
 
         unsat_values = [x.value for x in epsilon_status_list if x.result == VerificationResult.UNSAT]
         sat_values = [x.value for x in epsilon_status_list if x.result == VerificationResult.SAT]
